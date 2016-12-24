@@ -28,6 +28,12 @@ var gdk = {
 	"workDescription" : "administracja systemami, e-marketing"
 }
 
+var education = {}
+
+education["name"] = "WSZ";
+education["years"] = "2008-2012";
+education["city"] = "Gdańsk, Polska";
+
 var formattedName = HTMLheaderName.replace("%data%", bio.name);
 var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
 var formattedContactInfo = HTMLemail.replace("%data%", bio.contactInfo);
@@ -64,7 +70,18 @@ $("#workExperience").append(HTMLworkDates.replace("%data%", gdk.workDates));
 $("#workExperience").append(HTMLworkLocation.replace("%data%", gdk.workLocation));
 $("#workExperience").append(HTMLworkDescription.replace("%data%", gdk.workDescription));
 
+$("#education").append(HTMLschoolStart);
+$("#education").append(HTMLschoolName.replace("%data%", education["name"]));
+$("#education").append(HTMLschoolDegree.replace("%data%", education["degree"]));
+$("#education").append(HTMLschoolDates.replace("%data%", education["dates"]));
+$("#education").append(HTMLschoolLocation.replace("%data%", education["location"]));
+$("#education").append(HTMLschoolMajor.replace("%data%", education["major"]));
+/*
+var HTMLschoolStart = '<div class="education-entry"></div>';
+var HTMLschoolName = '<a href="#">%data%';
+var HTMLschoolDegree = ' -- %data%</a>';
+var HTMLschoolDates = '<div class="date-text">%data%</div>';
+var HTMLschoolLocation = '<div class="location-text">%data%</div>';
+var HTMLschoolMajor = '<em><br>Major: %data%</em>';
 
-
-
-
+*/
