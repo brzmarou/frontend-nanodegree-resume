@@ -3,34 +3,58 @@ This is empty on purpose! Your code to build the resume will go here.
  */
 
 var bio = {
-
-	"name" : "Mariusz Brzostek",
-	"role" : "Web Developer",
-	"contactInfo" : "a@b.c",
-	"pictureURL" : "http://mariuszbrzostek.pl/wp-content/uploads/2013/06/dyplom-e1378050767288.jpg",
-	"welcomeMassage" : " Powitalna wiadomość!",
-	"skills": ["programowanie", "Pozycjonowanie stron", "wordpress"]
-};
-
-
-work = {
-	"companies" : [
+	"person" : [
 		{
-			"workEmployer" : "Centrum Edukacji Nauczycieli w Gdańsku",
-			"workTitle" : "Specjalista ds. e-learningu",
-			"workDates" : "2014-2015",
-			"workLocation" : "Gdańsk, Polska",
-			"workDescription" : "administracja systemami, tworzenie e-learningu, programowanie"
-			},
-			{
-			"workEmployer" : "Gdański Dom Książki w Gdańsku",
-			"workTitle" : "informatyk",
-			"workDates" : "2013",
-			"workLocation" : "Gdańsk, Polska",
-			"workDescription" : "administracja systemami, e-marketing"
-			}
+		"name" : "Mariusz Brzostek",
+		"role" : "Web Developer",
+		"contactInfo" : "a@b.c",
+		"pictureURL" : "http://mariuszbrzostek.pl/wp-content/uploads/2013/06/dyplom-e1378050767288.jpg",
+		"welcomeMassage" : " Powitalna wiadomość!",
+		"skills": ["programowanie", "Pozycjonowanie stron", "wordpress"]
+		}
+	]
+}
+
+
+var work = {
+	"companies" : [
+	{
+		"workEmployer" : "Centrum Edukacji Nauczycieli w Gdańsku",
+		"workTitle" : "Specjalista ds. e-learningu",
+		"workDates" : "2014-2015",
+		"workLocation" : "Gdańsk, Polska",
+		"workDescription" : "administracja systemami, tworzenie e-learningu, programowanie"
+	},
+	{
+		"workEmployer" : "Gdański Dom Książki w Gdańsku",
+		"workTitle" : "informatyk",
+		"workDates" : "2013",
+		"workLocation" : "Gdańsk, Polska",
+		"workDescription" : "administracja systemami, e-marketing"
+	}
 		]
 }
+
+var projects = {
+	"applications": [
+		{
+			"title" : " Portal CEN",
+			"dates" : "2015",
+			"description" : "Główny portal Centrum edukacji Nauczycieli w Gdańsku. Postawiony na Wordpressie, z wykorzystaniem Frameworka GENESIS.",
+			"image" : "http://mariuszbrzostek.pl/wp-content/uploads/2013/06/dyplom-e1378050767288.jpg"
+		},
+		{
+			"title" : " Portal CEN",
+			"dates" : "2015",
+			"description" : "System rejestracyjny na szkolenia Centrum edukacji Nauczycieli w Gdańsku. Postawiony na Wordpressie, z wykorzystaniem Frameworka GENESIS.",
+			"image" : "http://mariuszbrzostek.pl/wp-content/uploads/2013/06/dyplom-e1378050767288.jpg"
+
+		}
+
+
+	]
+}
+
 var education = {
 	"schools":[ 
 		{
@@ -50,42 +74,36 @@ var education = {
 	]
 
 }
-/*bracet notification
-var education = {}
-
-education["name"] = "WSZ";
-education["years"] = "2008-2012";
-education["city"] = "Gdańsk, Polska";
-*/
-
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-var formattedContactInfo = HTMLemail.replace("%data%", bio.contactInfo);
-var formattedPictureURL = HTMLbioPic.replace("%data%", bio.pictureURL);
-var formattedWelcomeMassage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMassage);
-
-var formattedSkillsTemp = [];
-for(var i=0; i<bio.skills.length; i++) {
-	 formattedSkills[i] = HTMLskills.replace("%data%", bio.skills[i]);
+var formattedSkills = [];
+for(var i=0; i<bio.person[0].skills.length; i++) {
+	 formattedSkills[i] = HTMLskills.replace("%data%", bio.person[0].skills[i]);
 }
 
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-$("#footerContacts").prepend(formattedContactInfo);
-$("#header").append(formattedPictureURL);
-$("#header").append(formattedWelcomeMassage);
+$("#header").prepend(HTMLheaderRole.replace("%data%", bio.person[0].role));
+$("#header").prepend(HTMLheaderName.replace("%data%", bio.person[0].name));
+$("#topContacts").prepend(HTMLemail.replace("%data%", bio.person[0].contactInfo));
+$("#header").append(HTMLbioPic.replace("%data%", bio.person[0].pictureURL));
+$("#header").append(HTMLwelcomeMsg.replace("%data%", bio.person[0].welcomeMassage));
 $("#header").append(HTMLskillsStart);
-for(var i=0; i<bio.skills.length; i++) {
+for(var i=0; i<bio.person[0].skills.length; i++) {
 	$("#header").append(formattedSkills[i]);
 }
 
-for(var i=0; i < education.schools.length; i++) {
+for(var i=0; i < work.companies.length; i++) {
 $("#workExperience").append(HTMLworkStart);
 $("#workExperience").append(HTMLworkEmployer.replace("%data%", work.companies[i].workEmployer));
 $("#workExperience").append(HTMLworkTitle.replace("%data%", work.companies[i].workTitle));
 $("#workExperience").append(HTMLworkDates.replace("%data%", work.companies[i].workDates));
 $("#workExperience").append(HTMLworkLocation.replace("%data%", work.companies[i].workLocation));
 $("#workExperience").append(HTMLworkDescription.replace("%data%", work.companies[i].workDescription));
+}
+
+for(var i=0; i < projects.applications.length; i++) {
+$("#projects").append(HTMLprojectStart);
+$("#projects").append(HTMLprojectTitle.replace("%data%", projects.applications[i].title));
+$("#projects").append(HTMLprojectDates.replace("%data%", projects.applications[i].dates));
+$("#projects").append(HTMLprojectDescription.replace("%data%", projects.applications[i].description));
+$("#projects").append(HTMLprojectImage.replace("%data%", projects.applications[i].image));
 }
 
 for(var i=0; i < education.schools.length; i++) {
