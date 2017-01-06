@@ -74,19 +74,24 @@ var education = {
 	]
 
 }
+
 var formattedSkills = [];
 for(var i=0; i<bio.person[0].skills.length; i++) {
 	 formattedSkills[i] = HTMLskills.replace("%data%", bio.person[0].skills[i]);
 }
+
 
 $("#header").prepend(HTMLheaderRole.replace("%data%", bio.person[0].role));
 $("#header").prepend(HTMLheaderName.replace("%data%", bio.person[0].name));
 $("#topContacts").prepend(HTMLemail.replace("%data%", bio.person[0].contactInfo));
 $("#header").append(HTMLbioPic.replace("%data%", bio.person[0].pictureURL));
 $("#header").append(HTMLwelcomeMsg.replace("%data%", bio.person[0].welcomeMassage));
-$("#header").append(HTMLskillsStart);
-for(var i=0; i<bio.person[0].skills.length; i++) {
-	$("#header").append(formattedSkills[i]);
+
+if(bio.person[0].skills.length > 0) {	
+	$("#header").append(HTMLskillsStart);
+	for(var i=0; i<bio.person[0].skills.length; i++) {
+		$("#skills").append(formattedSkills[i]);
+	}
 }
 
 for(var i=0; i < work.companies.length; i++) {
