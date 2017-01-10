@@ -81,6 +81,24 @@ var education = {
 
 }
 
+
+function inName() {
+	var nameInternational = bio.person[0].name.split(" ");
+	var nazwiskoInt = nameInternational[1];
+	var temp = nameInternational[0].split("");
+	temp[0] = temp[0].toUpperCase();
+	for ( var i=1 ; i< temp.length; i++) {
+		temp[0] = temp[0].concat(temp[i]);
+	}
+	nameInternational[0] = temp[0];
+	nameInternational[1] = nameInternational[1].toUpperCase();
+	nameInternational[1] = nameInternational[1].toUpperCase();
+	nameInternational = nameInternational[0].concat(" ",nameInternational[1]);
+	console.log(nameInternational);
+}
+
+
+$("#main").append(internationalizeButton);
 var formattedSkills = [];
 for(var i=0; i<bio.person[0].skills.length; i++) {
 	 formattedSkills[i] = HTMLskills.replace("%data%", bio.person[0].skills[i]);
@@ -136,3 +154,4 @@ $("#education").append(HTMLschoolDates.replace("%data%", education.schools[i].ye
 $("#education").append(HTMLschoolLocation.replace("%data%", education.schools[i].city));
 $("#education").append(HTMLschoolMajor.replace("%data%", education.schools[i].major));
 }
+
