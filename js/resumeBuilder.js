@@ -2,6 +2,12 @@
 This is empty on purpose! Your code to build the resume will go here.
  */
 
+$(document).click(function(loc) {
+  var x = loc.pageX;
+  var y = loc.pageY;
+  logClicks(x,y);
+});
+
 var bio = {
 	"person" : [
 		{
