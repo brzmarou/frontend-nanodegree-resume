@@ -16,11 +16,20 @@ var bio = {
 		"contactInfo" : "a@b.c",
 		"pictureURL" : "http://mariuszbrzostek.pl/wp-content/uploads/2013/06/dyplom-e1378050767288.jpg",
 		"welcomeMassage" : " Powitalna wiadomość!",
-		"skills": ["programowanie", "Pozycjonowanie stron", "wordpress"]
+		"skills": ["programowanie", "Pozycjonowanie stron", "wordpress"],
+		"contacts" : 
+			{
+			"mobile" : "123-456-789",
+			"email" : "a@b.c",
+			"github" : "brzmarou",
+			"location" : "ul. Królikarnia, Gdańsk, Polska"
+			}
 		}
 	]
-}
+}		
 
+//console.log(bio.person[0].contacts.location);
+//bio.contacts.location = bio.person[0].contacts.location;
 
 var work = {
 	"companies" : [
@@ -83,7 +92,7 @@ var education = {
 
 
 function inName() {
-	var nameInternational = bio.person[0].name.split(" ");
+	var nameInternational = bio.person[0].name.toLowerCase().split(" ");
 	var nazwiskoInt = nameInternational[1];
 	var temp = nameInternational[0].split("");
 	temp[0] = temp[0].toUpperCase();
@@ -117,15 +126,6 @@ if(bio.person[0].skills.length > 0) {
 		$("#skills").append(formattedSkills[i]);
 	}
 }
-/*
-for(var i=0; i < work.companies.length; i++) {
-$("#workExperience").append(HTMLworkStart);
-$("#workExperience").append(HTMLworkEmployer.replace("%data%", work.companies[i].workEmployer));
-$("#workExperience").append(HTMLworkTitle.replace("%data%", work.companies[i].workTitle));
-$("#workExperience").append(HTMLworkDates.replace("%data%", work.companies[i].workDates));
-$("#workExperience").append(HTMLworkLocation.replace("%data%", work.companies[i].workLocation));
-$("#workExperience").append(HTMLworkDescription.replace("%data%", work.companies[i].workDescription));
-}*/
 
 for (key in work.companies) {
 	$("#workExperience").append(HTMLworkStart);
@@ -138,13 +138,16 @@ for (key in work.companies) {
     $(".work-entry:last").append(formatedEmployerTitle);
 }
 
-for(var i=0; i < projects.applications.length; i++) {
-$("#projects").append(HTMLprojectStart);
-$("#projects").append(HTMLprojectTitle.replace("%data%", projects.applications[i].title));
-$("#projects").append(HTMLprojectDates.replace("%data%", projects.applications[i].dates));
-$("#projects").append(HTMLprojectDescription.replace("%data%", projects.applications[i].description));
-$("#projects").append(HTMLprojectImage.replace("%data%", projects.applications[i].image));
+projects.display = function() {
+	for(var i=0; i < projects.applications.length; i++) {
+	$("#projects").append(HTMLprojectStart);
+	$("#projects").append(HTMLprojectTitle.replace("%data%", projects.applications[i].title));
+	$("#projects").append(HTMLprojectDates.replace("%data%", projects.applications[i].dates));
+	$("#projects").append(HTMLprojectDescription.replace("%data%", projects.applications[i].description));
+	$("#projects").append(HTMLprojectImage.replace("%data%", projects.applications[i].image));
+	}
 }
+projects.display();
 
 for(var i=0; i < education.schools.length; i++) {
 $("#education").append(HTMLschoolStart);
@@ -154,4 +157,6 @@ $("#education").append(HTMLschoolDates.replace("%data%", education.schools[i].ye
 $("#education").append(HTMLschoolLocation.replace("%data%", education.schools[i].city));
 $("#education").append(HTMLschoolMajor.replace("%data%", education.schools[i].major));
 }
+
+$("#mapDiv").append(googleMap);
 
