@@ -28,9 +28,6 @@ var bio = {
 	]
 }		
 
-//console.log(bio.person[0].contacts.location);
-//bio.contacts.location = bio.person[0].contacts.location;
-
 var work = {
 	"companies" : [
 	{
@@ -158,5 +155,5 @@ $("#education").append(HTMLschoolLocation.replace("%data%", education.schools[i]
 $("#education").append(HTMLschoolMajor.replace("%data%", education.schools[i].major));
 }
 
-$("#mapDiv").append(googleMap);
+//$("#mapDiv").append(googleMap);
 
