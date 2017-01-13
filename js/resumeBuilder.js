@@ -9,42 +9,41 @@ $(document).click(function(loc) {
 });
 
 var bio = {
-	"person" : [
+	
+	"name" : "Mariusz Brzostek",
+	"role" : "Web Developer",
+	"contactInfo" : "a@b.c",
+	"pictureURL" : "http://mariuszbrzostek.pl/wp-content/uploads/2013/06/dyplom-e1378050767288.jpg",
+	"welcomeMassage" : " Powitalna wiadomość!",
+	"skills": ["programowanie", "Pozycjonowanie stron", "wordpress"],
+	"contacts" : 
 		{
-		"name" : "Mariusz Brzostek",
-		"role" : "Web Developer",
-		"contactInfo" : "a@b.c",
-		"pictureURL" : "http://mariuszbrzostek.pl/wp-content/uploads/2013/06/dyplom-e1378050767288.jpg",
-		"welcomeMassage" : " Powitalna wiadomość!",
-		"skills": ["programowanie", "Pozycjonowanie stron", "wordpress"],
-		"contacts" : 
-			{
-			"mobile" : "123-456-789",
-			"email" : "a@b.c",
-			"github" : "brzmarou",
-			"location" : "ul. Królikarnia, Gdańsk, Polska"
-			}
+		"mobile" : "123-456-789",
+		"email" : "a@b.c",
+		"github" : "brzmarou",
+		"location" : "ul. Królikarnia, Gdańsk, Polska"
 		}
-	]
+	
+	
 }		
 
 var work = {
 	"companies" : [
-	{
-		"workEmployer" : "Centrum Edukacji Nauczycieli w Gdańsku",
-		"workTitle" : "Specjalista ds. e-learningu",
-		"workDates" : "2014-2015",
-		"workLocation" : "Gdańsk, Polska",
-		"workDescription" : "administracja systemami, tworzenie e-learningu, programowanie"
-	},
-	{
-		"workEmployer" : "Gdański Dom Książki w Gdańsku",
-		"workTitle" : "informatyk",
-		"workDates" : "2013",
-		"workLocation" : "Gdańsk, Polska",
-		"workDescription" : "administracja systemami, e-marketing"
-	}
-		]
+		{
+			"workEmployer" : "Centrum Edukacji Nauczycieli w Gdańsku",
+			"workTitle" : "Specjalista ds. e-learningu",
+			"workDates" : "2014-2015",
+			"workLocation" : "Polska, Gdańsk, aleja Hallera 14",
+			"workDescription" : "administracja systemami, tworzenie e-learningu, programowanie"
+		},
+		{
+			"workEmployer" : "Gdański Dom Książki w Gdańsku",
+			"workTitle" : "informatyk",
+			"workDates" : "2013",
+			"workLocation" : "Polska, Gdańsk",
+			"workDescription" : "administracja systemami, e-marketing"
+		}
+	]
 }
 
 var projects = {
@@ -73,14 +72,14 @@ var education = {
 			"name" : " WSZ w Gdańsku",
 			"degree" : "inżynier",
 			"years" : "2004 - 2008",
-			"city" : "Gdańsk,Polska",
+			"location" : "Gdańsk,Polska",
 			"major" : "sieci komputerowe i systemy rozproszone"
 		},
 		{
 			"name" : " AM w Gdynii",
 			"degree" : "magister",
 			"years" : "2008 - 2012",
-			"city" : "Gdynia,Polska",
+			"location" : "Gdynia,Polska",
 			"major" : "zarządzanie e-biznesem"
 		}
 	]
@@ -89,7 +88,7 @@ var education = {
 
 
 function inName() {
-	var nameInternational = bio.person[0].name.toLowerCase().split(" ");
+	var nameInternational = bio.name.toLowerCase().split(" ");
 	var nazwiskoInt = nameInternational[1];
 	var temp = nameInternational[0].split("");
 	temp[0] = temp[0].toUpperCase();
@@ -103,23 +102,21 @@ function inName() {
 	console.log(nameInternational);
 }
 
-
-$("#main").append(internationalizeButton);
+//$("#main").append(internationalizeButton);
 var formattedSkills = [];
-for(var i=0; i<bio.person[0].skills.length; i++) {
-	 formattedSkills[i] = HTMLskills.replace("%data%", bio.person[0].skills[i]);
+for(var i=0; i<bio.skills.length; i++) {
+	 formattedSkills[i] = HTMLskills.replace("%data%", bio.skills[i]);
 }
 
+$("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
+$("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
+$("#topContacts").prepend(HTMLemail.replace("%data%", bio.contactInfo));
+$("#header").append(HTMLbioPic.replace("%data%", bio.pictureURL));
+$("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMassage));
 
-$("#header").prepend(HTMLheaderRole.replace("%data%", bio.person[0].role));
-$("#header").prepend(HTMLheaderName.replace("%data%", bio.person[0].name));
-$("#topContacts").prepend(HTMLemail.replace("%data%", bio.person[0].contactInfo));
-$("#header").append(HTMLbioPic.replace("%data%", bio.person[0].pictureURL));
-$("#header").append(HTMLwelcomeMsg.replace("%data%", bio.person[0].welcomeMassage));
-
-if(bio.person[0].skills.length > 0) {	
+if(bio.skills.length > 0) {	
 	$("#header").append(HTMLskillsStart);
-	for(var i=0; i<bio.person[0].skills.length; i++) {
+	for(var i=0; i<bio.skills.length; i++) {
 		$("#skills").append(formattedSkills[i]);
 	}
 }
@@ -155,5 +152,5 @@ $("#education").append(HTMLschoolLocation.replace("%data%", education.schools[i]
 $("#education").append(HTMLschoolMajor.replace("%data%", education.schools[i].major));
 }
 
-//$("#mapDiv").append(googleMap);
+$("#mapDiv").append(googleMap);
 
